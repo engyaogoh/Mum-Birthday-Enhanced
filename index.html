@@ -240,6 +240,18 @@ section{position:relative;z-index:2;min-height:100vh;padding:110px 24px;display:
 .heart-stitch-3{opacity:0;transition:opacity .4s 1.5s}
 .heart-stage.drawn .heart-stitch-1,.heart-stage.drawn .heart-stitch-2,.heart-stage.drawn .heart-stitch-3{opacity:1}
 .signature-line{font-style:italic;color:var(--ink-soft);margin-top:20px}
+/* framed AI embroidered keepsake beside the drawing heart */
+.sig-row{display:flex;align-items:center;justify-content:center;gap:clamp(28px,6vw,70px);flex-wrap:wrap;margin-top:30px}
+.keepsake{
+  position:relative;border-radius:2px;overflow:hidden;
+  border:2px dashed var(--seam);outline:7px solid var(--paper);outline-offset:-2px;
+  box-shadow:var(--shadow);width:min(240px,72vw);aspect-ratio:1/1;transform:rotate(1.2deg);
+}
+.keepsake::before,.keepsake::after{content:"";position:absolute;width:16px;height:16px;z-index:2;pointer-events:none}
+.keepsake::before{top:6px;left:6px;border-top:2px solid var(--gold);border-left:2px solid var(--gold)}
+.keepsake::after{bottom:6px;right:6px;border-bottom:2px solid var(--gold);border-right:2px solid var(--gold)}
+.keepsake img{width:100%;height:100%;object-fit:cover;display:block}
+@media(max-width:640px){.sig-row{flex-direction:column;gap:26px}}
 
 /* ============ EPILOGUE ============ */
 #epilogue{text-align:center;background:radial-gradient(120% 100% at 50% 0%,var(--linen-deep) 0%,var(--linen) 60%)}
@@ -350,17 +362,22 @@ footer .big{font-family:var(--display);font-style:italic;font-size:38px;color:va
 <section id="signature">
   <div class="wrap">
     <div class="eyebrow reveal">A little embroidery, for you</div>
-    <div class="heart-stage reveal" id="heartStage" aria-hidden="true">
-      <svg viewBox="0 0 200 190">
-        <!-- thread draws a heart (path length ≈ 505) -->
-        <path class="heart-thread" id="heartPath" d="M100 172 C 58 138, 12 106, 14 62 C 16 26, 54 8, 86 26 C 100 35, 100 46, 100 46 C 100 46, 100 35, 114 26 C 146 8, 184 26, 186 62 C 188 106, 142 138, 100 172 Z"/>
-        <!-- gold finishing stitches at the base -->
-        <path class="heart-stitches heart-stitch-1" d="M88 168 l8 8 M96 168 l8 8"/>
-        <path class="heart-stitches heart-stitch-2" d="M106 170 l8 8 M114 170 l8 8"/>
-        <path class="heart-stitches heart-stitch-3" d="M124 168 l8 8 M132 168 l8 8"/>
-      </svg>
-    </div>
-    <p class="signature-line reveal d2">Stitched with the patience you taught us.</p>
+        <div class="sig-row reveal">
+          <div class="heart-stage" id="heartStage" aria-hidden="true">
+            <svg viewBox="0 0 200 190">
+              <!-- thread draws a heart (path length ≈ 505) -->
+              <path class="heart-thread" id="heartPath" d="M100 172 C 58 138, 12 106, 14 62 C 16 26, 54 8, 86 26 C 100 35, 100 46, 100 46 C 100 46, 100 35, 114 26 C 146 8, 184 26, 186 62 C 188 106, 142 138, 100 172 Z"/>
+              <!-- gold finishing stitches at the base -->
+              <path class="heart-stitches heart-stitch-1" d="M88 168 l8 8 M96 168 l8 8"/>
+              <path class="heart-stitches heart-stitch-2" d="M106 170 l8 8 M114 170 l8 8"/>
+              <path class="heart-stitches heart-stitch-3" d="M124 168 l8 8 M132 168 l8 8"/>
+            </svg>
+          </div>
+          <div class="keepsake" aria-hidden="true">
+            <img loading="lazy" width="800" height="800" src="embroidery-heart.png" alt="An embroidered cross-stitch heart, stitched with patience">
+          </div>
+        </div>
+        <p class="signature-line reveal d2">Stitched with the patience you taught us.</p>
   </div>
 </section>
 
